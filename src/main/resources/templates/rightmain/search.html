@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<th:block layout:fragment="script">
+    <script th:src="@{/assets/js/pop-up.js}"></script>
+    <script th:src="@{/assets/js/main-script.js}"></script>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/assets/css/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/search.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/popup.css}">
+</th:block>
+<div layout:fragment="content" class="content">
+    <main id="mainContainer" class="p-b-40">
+        <div th:replace="fragments/popup :: myPopup"></div>
+
+
+        <div>
+            <form th:action="@{/search}" method="get" class="container justify-content-center">
+                <div class="searchform d-flex flex-center flex-middle input-group" style="padding-top: 150px;">
+                    <input class="form-control" type="text" name="searchKeyword" placeholder="검색.." autocomplete="off" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" id="button-addon2" type="submit">검색</button>
+
+                </div>
+            </form>
+            <div class=" d-flex justify-content-center">
+                <div class="searchlist alwaysShow" th:each="video : ${list}" style="width:320px; margin:15px;">
+                    <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style="" th:data-video-url="@{${video.videoFile.fileUrl}}"
+                         th:data-video-nm="@{${video.videoNm}}"
+                         th:data-video-genres="@{${video.genres}}"
+                         th:data-video-description="@{${video.description}}"
+                         th:data-video-actors="@{${video.actors}}"
+                         th:data-video-cast="@{${video.cast}}"
+                         th:data-video-id="@{${video.id}}"
+                         th:data-video-recent="@{${video.id}}"
+                         th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"
+                         th:data-video-level="${video.videoMaturityLevel}"
+                    >
+                    <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--메인 종료-->
+
+
+
+
+</div>
+
+
+</html>

@@ -1,0 +1,430 @@
+@font-face {
+  font-family: 'Netflix Sans';
+  src: url('../fonts/NetflixSans-Bold.otf') format('opentype');
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: calc(50% + 10px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 1000px;
+  max-height: calc(100% - 100px);
+  background-color: RGB(24, 24, 24);
+   overflow-x: hidden;
+   overflow-y: auto;
+  color: white;
+  z-index: 29999;
+  border-radius: 10px;
+  padding-bottom: 15px;
+
+}
+
+.popup::-webkit-scrollbar {
+  width: 0;  /* �ㅽ겕濡ㅻ컮 �덈퉬瑜� 0�쇰줈 �ㅼ젙 */
+  background: transparent;  /* �ㅽ겕濡ㅻ컮 諛곌꼍�� �щ챸�쇰줈 �ㅼ젙 */
+}
+
+.popup-close {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  cursor: pointer;
+  font-weight: 800;
+  color: white;
+  z-index: 50;
+  border-radius: 50%;
+  text-align: center;
+  border: 1px solid gray;
+  margin-right: 5px;
+}
+
+.popup-close:hover {
+  transform: scale(1.1);
+  border: 2px solid white;
+}
+
+.videoContainer {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  background-color: RGB(24, 24, 24);
+}
+
+.titleV span {
+  position: absolute;
+  z-index: 500;
+  bottom: 22%;
+  left: 4%;
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
+  font-size: 60px;
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5);
+  font-style: italic;
+
+}
+
+.videoSpace {
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.videoContainer video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.temp {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  z-index: 1;
+  left: 4%;
+  bottom: 12%;
+}
+
+.videoContainer .saveLike {
+  float: right;
+  font-size: 40px; /* �ш린 議곗젙 */
+  border-radius: 50%;
+  margin-top: -5px;
+}
+
+.go-button {
+  border: 1px solid gray;
+  background-color: transparent;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border-radius: 5px;
+  float: left;
+  margin-left: 5px;
+  width: 120px;
+  height: 50px;
+  background-color: white;
+}
+
+.go-button:hover {
+  border: 2px solid gray;
+}
+
+.go-button svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+.textSpace {
+  margin-top: 50px;
+  margin-left: 30px;
+  align-items: center;
+}
+
+.black_bridge {
+  position: absolute;
+  z-index: 500;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* �ш린 議곗젙 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+}
+
+.textContainer {
+  width: 1200px;
+  height: 200px; /* �ш린 議곗젙 */
+  position: relative;
+}
+
+.story_box {
+  float: left;
+  width: 800px;
+  height: 200px; /* �ш린 議곗젙 */
+  margin-top:20px;
+  background-color: RGB(24, 24, 24);
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
+    font-size: 35px; /* Increase the font size as desired */
+}
+
+.short_box {
+  float: left;
+  width: 350px;
+  height: 100%;
+
+  background-color: RGB(24, 24, 24);
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
+    font-size: 30px; /* Increase the font size as desired */
+}
+
+.tmp {
+  width: 500px;
+  height: 200px;
+  margin: 10px auto 0;
+       font-size: 25px; /* Increase the font size as desired */
+}
+
+
+.tmp p:nth-child(2) {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.2;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+     font-size: 35px; /* Increase the font size as desired */
+
+}
+
+.short_box p {
+  margin-top: 10px;
+  margin-left: 5px;
+  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+     font-size: 30px; /* Increase the font size as desired */
+
+}
+
+.short_box p span {
+  margin-left: 5px;
+  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+     font-size: 30px; /* Increase the font size as desired */
+}
+
+.level {
+  color: green;
+}
+
+        .recommend_title {
+            font-size: 25px;
+            text-align: left;
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
+  padding-top:30px;
+  padding-left:70px;
+        }
+
+.textContainer .story_box span,
+.textContainer .short_box span,
+.textContainer .story_box .tmp p span,
+.textContainer .short_box p span {
+  font-size: 18px;
+}
+
+        .recommend p,
+        .recommend h2 {
+            font-size: 25px;
+             margin-top: 10px !important;
+               font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
+        }
+
+@media (max-width: 1250px) {
+  .popup {
+    top: calc(50% + 5px);
+    width: 90%;
+    height: 80vh;
+    max-height: calc(100% - 50px);
+    padding-bottom: 10px;
+  }
+
+  .videoContainer {
+    height: 500px;
+  }
+
+  .titleV span {
+    bottom: 28%;
+    left: 2%;
+    font-size: 50px;
+  }
+
+  .videoContainer .saveLike {
+    font-size: 36px;
+    margin-right: 10px;
+  }
+
+  .textSpace {
+    margin-top: 40px;
+    margin-left: 25px;
+  }
+
+  .black_bridge {
+    height: 50px;
+  }
+
+  .textContainer {
+    width: 90%;
+    height: 250px;
+  }
+
+  .story_box {
+    width: 60%;
+    height: 250px;
+    font-size: 22px;
+      margin-top:14px;
+  }
+
+  .short_box {
+    width: 35%;
+    height: 250px;
+    font-size: 20px;
+  }
+
+  .temp {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    z-index: 1;
+    left: 4%;
+    bottom: 15%;
+  }
+
+  .tmp {
+    width: 50%;
+    height: 250px;
+    font-size: 20px;
+  }
+
+  .tmp p:nth-child(2) {
+    -webkit-line-clamp: 4;
+  }
+
+  .short_box p {
+   margin-top: 10px;
+    margin-left: 5px;
+    font-size: 18px;
+  }
+
+  .short_box p span {
+    margin-left: 5px;
+    font-size: 18px;
+  }
+
+  .recommend_title {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .textContainer .story_box span,
+  .textContainer .short_box span,
+  .textContainer .story_box .tmp p span,
+  .textContainer .short_box p span {
+    font-size: 18px;
+  }
+}
+
+
+
+@media (max-width: 950px){
+
+ @media (max-width: 950px) {
+ .popup {
+ top: calc(50% + 5px);
+ width: 90%;
+ height: 80vh;
+ max-height: calc(100% - 50px);
+ padding-bottom: 10px;
+ }
+
+
+
+ .videoContainer {
+ height: 400px;
+ }
+
+ .titleV span {
+ bottom: 26%;
+ left: 2%;
+ font-size: 40px;
+ }
+
+ .videoContainer .saveLike {
+ font-size: 30px;
+ margin-right:10px;
+ }
+
+ .textSpace {
+ margin-top: 30px;
+ margin-left: 20px;
+ }
+
+ .black_bridge {
+ height: 40px;
+ }
+
+ .textContainer {
+ width: 90%;
+ height: 200px;
+ }
+
+ .story_box {
+ width: 60%;
+ height: 200px;
+ font-size: 20px;
+   margin-top:10px;
+ }
+
+ .short_box {
+ width: 35%;
+ height: 200px;
+ font-size: 18px;
+ }
+
+ .temp {
+   position: absolute;
+   width: 180px;
+   height: 50px;
+   z-index: 1;
+   left: 4%;
+   bottom: 12%;
+ }
+
+ .tmp {
+ width: 50%;
+ height: 200px;
+ font-size: 18px;
+ }
+
+ .tmp p:nth-child(2) {
+ -webkit-line-clamp: 3;
+ }
+
+ .short_box p {
+  margin-top: 10px;
+ margin-left: 3px;
+ font-size: 16px;
+ }
+
+ .short_box p span {
+ margin-left: 3px;
+ font-size: 16px;
+ }
+
+ .recommend_title {
+ font-size: 16px;
+ margin-right: 5px;
+ }
+
+ .textContainer .story_box span,
+ .textContainer .short_box span,
+ .textContainer .story_box .tmp p span,
+ .textContainer .short_box p span {
+ font-size: 16px;
+ }
+
+  }

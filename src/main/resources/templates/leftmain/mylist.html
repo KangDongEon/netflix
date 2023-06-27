@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<th:block layout:fragment="script">
+    <script th:src="@{/assets/js/main-script.js}"></script>
+    <script th:src="@{/assets/js/pop-up.js}"></script>
+
+</th:block>
+
+<th:block layout:fragment="css">
+
+
+    <!-- <link rel="stylesheet" th:href="@{/assets/css/global.css}"> -->
+    <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/popup.css}">
+    <!--    팝업에 대한 css -->
+    <!--    header처럼 불러올 수 있게 한다 -->
+    <style>
+
+
+    </style>
+</th:block>
+
+
+<div layout:fragment="content" class="content">
+    <main id="mainContainer" class="p-b-40">
+        <div th:replace="fragments/popup :: myPopup"></div>
+        <!-- hero section -->
+
+        <!--paretn div with black bg after main hero section-->
+        <div class="black-background1"  >
+
+
+            <!--hollywood new release -->
+            <section id="mylist" class="container">
+
+                <!--                여기서부터 -->
+                <h4 class="mylist-heading" >
+
+                    <span >내가 찜한 콘탠츠 </span>
+                </h4>
+
+                <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel ">
+                    <div th:each="video : ${videos}" class="video searchlist getRecent mylike" th:if="${videos != null}">
+                        <video class="mylist-img p-r-10 p-t-10 video-item"
+                               th:poster="${video.videoImg.imgUrl}">
+                            <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->
+                            <source
+                                    th:src="${video.videoFile.fileUrl}"
+                                    type="video/mp4">
+
+                            <!--                            Your browser does not support the video tag.-->
+                        </video>
+
+                        <div class="video-description d-flex flex-end direction-column " th:data-video-url="@{${video.videoFile.fileUrl}}"
+                             th:data-video-nm="@{${video.videoNm}}"
+                             th:data-video-genres="@{${video.genres}}"
+                             th:data-video-description="@{${video.description}}"
+                             th:data-video-actors="@{${video.actors}}"
+                             th:data-video-cast="@{${video.cast}}"
+                             th:data-video-recent="@{${video.id}}"
+                             th:data-video-id="@{${video.id}}"
+                             th:data-video-level="${video.videoMaturityLevel}"
+                             th:data-video-Role="${video.videoRole}"
+                        >
+                            <div class="play-button d-flex justify-content-start ">
+                                <svg viewBox="0 0 24 24" class="full" >
+                                    <path d="M6 4l15 8-15 8z" fill="black"></path>
+                                </svg>
+
+
+
+                                <div class="like-button saveLike findI " >
+                                    <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
+
+                                </div>
+
+                                <!--                                -->
+
+                            </div>
+                            <div>
+                                <h4 class="heading f-w-8 text-shadow">
+                                    <!--                                    Never Have I Ever-->
+                                    <p th:text="${video.videoNm}"></p>
+                                </h4>
+                            </div>
+                            <div class="info d-flex flex-middle flex-no-wrap">
+                                <p th:text="${video.videoMaturityLevel}"></p>
+                                <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
+                                <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
+                            </div>
+                            <div class="genere d-flex flex-no-wrap text-shadow">
+                                <p th:text="'#' + ${video.genres}"></p>
+                                <!--                                <p>#선정성</p>-->
+                                <!--                                <p>#로맨스</p>-->
+                                <!--                                <p>#사랑</p>-->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </section>
+            <!--                세션 기준으로 장르별로 나눈다 여기까지 할리우드? 임의로 슬리러 장르를 for each문 -->
+
+            <!--new release -->
+
+
+        </div>
+    </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+</html>
